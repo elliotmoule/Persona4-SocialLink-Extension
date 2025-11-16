@@ -36,6 +36,11 @@ function checkForSocialLinkText() {
   return false;
 }
 
+function updateTabTitle(characterName) {
+  const currentTitle = document.title;
+  document.title = `${characterName} - Social Link Guide - ${currentTitle}`;
+}
+
 // Extract character name from the page
 function extractCharacterName() {
   // Try to extract from the page title or heading
@@ -134,6 +139,8 @@ function init() {
   }
   
   console.log(`Found character: ${characterName}`);
+  
+  updateTabTitle(characterName);
   
   // Inject the floating image
   injectFloatingImage(characterName);
