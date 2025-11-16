@@ -1,24 +1,26 @@
 // Character name to full Wikipedia image URL mapping
 const CHARACTER_IMAGE_MAP = {
-  'nanako': 'https://upload.wikimedia.org/wikipedia/en/e/e9/Nanako_Dojima.png',
-  'chie': 'https://upload.wikimedia.org/wikipedia/en/d/dc/ChieSatonaka.png',
-  'yukiko': 'https://upload.wikimedia.org/wikipedia/en/3/3e/Yukiko_Amagi.png',
-  'rise': 'https://upload.wikimedia.org/wikipedia/en/a/aa/Rise_Kujikawa.png',
-  'kanji': 'https://upload.wikimedia.org/wikipedia/en/f/f4/Kanji_Tatsumi.png',
-  'naoto': 'https://upload.wikimedia.org/wikipedia/en/4/4c/Naoto_Shirogane.png',
-  'yosuke': 'https://upload.wikimedia.org/wikipedia/en/b/b1/Yosuke_Hanamura.png',
-  'teddie': 'https://upload.wikimedia.org/wikipedia/en/8/8c/Teddie_%28Persona%29.png',
-  'marie': 'https://upload.wikimedia.org/wikipedia/en/5/5e/Marie_%28Persona%29.png',
-  'kou': 'https://megatenwiki.com/images/b/ba/P4G_Kou_Ichijo_Basketball_Uniform_Neutral_Portrait_Graphic.png',
-  'daisuke': 'https://megatenwiki.com/images/thumb/b/b3/P4_Daisuke_Nagase_Artwork.png/600px-P4_Daisuke_Nagase_Artwork.png',
-  'ayane': 'https://megatenwiki.com/images/b/b6/P4_Ayane_Matsunaga_Artwork.png',
-  'ai': 'https://megatenwiki.com/images/thumb/d/db/P4_Ai_Ebihara_Artwork.png/600px-P4_Ai_Ebihara_Artwork.png',
-  'yumi': 'https://megatenwiki.com/images/thumb/e/ec/P4_Yumi_Ozawa_Artwork.png/600px-P4_Yumi_Ozawa_Artwork.png',
-  'naoki': 'https://megatenwiki.com/images/4/4e/P4_Naoki_Konishi_Artwork.png',
-  'shu': 'https://megatenwiki.com/images/f/fd/P4_Shu_Nakajima_Artwork.png',
-  'eri': 'https://megatenwiki.com/images/b/b6/P4_Eri_Minami_Artwork.png',
-  'sayoko': 'https://megatenwiki.com/images/thumb/d/d4/P4_Sayoko_Uehara_Artwork.png/600px-P4_Sayoko_Uehara_Artwork.png',
-  'hisano': 'https://megatenwiki.com/images/f/f6/P4_Hisano_Kuroda_Artwork.png',
+  'nanako': 'https://static.wikia.nocookie.net/megamitensei/images/4/40/NanakoDojima.png',
+  'dojima': 'https://static.wikia.nocookie.net/megamitensei/images/4/42/P4DojimaRender.png',
+  'chie': 'https://static.wikia.nocookie.net/megamitensei/images/8/88/P4A_Chie_Render.png',
+  'yukiko': 'https://static.wikia.nocookie.net/megamitensei/images/3/3f/Yukiko_Amagi_%28BlazBlue_Cross_Tag_Battle%2C_Character_Select_Artwork%29.png',
+  'rise': 'https://static.wikia.nocookie.net/megamitensei/images/a/ab/P4A_Rise_Render.png',
+  'kanji': 'https://static.wikia.nocookie.net/megamitensei/images/5/5c/P4A_Kanji_Render.png',
+  'naoto': 'https://static.wikia.nocookie.net/megamitensei/images/0/0e/P4A_Naoto.png',
+  'yosuke': 'https://static.wikia.nocookie.net/megamitensei/images/d/d2/Persona_4_arena_Yosuke.png',
+  'marie': 'https://static.wikia.nocookie.net/megamitensei/images/c/cf/P4AU_Marie.png',
+  'kou': 'https://static.wikia.nocookie.net/megamitensei/images/2/25/P4_Kou.png',
+  'daisuke': 'https://static.wikia.nocookie.net/megamitensei/images/9/95/Daisuke.png',
+  'ayane': 'https://static.wikia.nocookie.net/megamitensei/images/b/bb/Ayane_P4.png',
+  'ai': 'https://static.wikia.nocookie.net/megamitensei/images/9/9d/P4_Ai.png',
+  'yumi': 'https://static.wikia.nocookie.net/megamitensei/images/c/c8/Yumi_P4.png',
+  'naoki': 'https://static.wikia.nocookie.net/megamitensei/images/8/8a/Naoki_render.png',
+  'shu': 'https://static.wikia.nocookie.net/megamitensei/images/2/29/Shu.png',
+  'eri': 'https://static.wikia.nocookie.net/megamitensei/images/d/da/Eri.png',
+  'sayoko': 'https://static.wikia.nocookie.net/megamitensei/images/f/f9/Sayoko.png',
+  'hisano': 'https://static.wikia.nocookie.net/megamitensei/images/3/38/Hisano.png',
+  'fox': 'https://static.wikia.nocookie.net/megamitensei/images/3/35/Fox_P4.png',
+  'margaret': 'https://static.wikia.nocookie.net/megamitensei/images/9/96/Margaret.png',
 };
 
 // Check if page contains the specific text in an h2 tag
@@ -26,7 +28,7 @@ function checkForSocialLinkText() {
   const header2Tags = document.querySelectorAll('h2');
   
   for (const h2 of header2Tags) {
-    if (h2.textContent.includes('S-Link Guide')) {
+    if (h2.textContent.includes('S-Link Guide') || (h2.textContent.includes('Social Link'))) {
       return true;
     }
   }
@@ -48,6 +50,12 @@ function extractCharacterName() {
     
     // Remove common suffixes like "Justice", "Magician", etc.
     characterName = characterName.split(/\s+/)[0];
+
+    if (characterName == 'Athletes') {
+        characterName = 'Kou'
+    } else if (characterName == 'Fusion') {
+        characterName = 'margaret'
+    }
     
     return characterName;
   }
