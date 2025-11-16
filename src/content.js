@@ -73,6 +73,11 @@ function injectFloatingImage(characterName) {
     return;
   }
   
+  // Make sure the article-story div has position relative for absolute positioning to work
+  if (getComputedStyle(articleStory).position === 'static') {
+    articleStory.style.position = 'relative';
+  }
+  
   // Normalize character name and look up full image URL
   const normalizedName = characterName.toLowerCase();
   const imageUrl = CHARACTER_IMAGE_MAP[normalizedName];
@@ -98,8 +103,8 @@ function injectFloatingImage(characterName) {
   
   floatingContainer.appendChild(img);
   
-  // Insert the floating container before the article-story div
-  articleStory.parentNode.insertBefore(floatingContainer, articleStory);
+  // Insert the floating container as the first child of article-story
+  articleStory.insertBefore(floatingContainer, articleStory.firstChild);
   
   console.log(`Floating image added for character: ${characterName} (${imageUrl})`);
 }
