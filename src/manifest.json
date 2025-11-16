@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Persona 4 Golden Social Link Helper",
+  "version": "1.0",
+  "description": "Displays character images on RPG Site's Persona 4 Golden social link guides",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["https://www.rpgsite.net/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
