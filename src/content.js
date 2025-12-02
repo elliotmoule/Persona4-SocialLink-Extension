@@ -59,7 +59,7 @@ function extractCharacterName() {
     if (characterName == 'Athletes') {
         characterName = 'Kou'
     } else if (characterName == 'Fusion') {
-        characterName = 'margaret'
+        characterName = 'Margaret'
     }
     
     return characterName;
